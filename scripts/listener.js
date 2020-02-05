@@ -1,1 +1,1 @@
-document.querySelector("submitter").addEventListener('click',calculateHandler())
+document.querySelector("#submitter").addEventListener("click",calculateHandler);

@@ -12,6 +12,13 @@ const doMathTests = [
   { name: "div - 3", args: ["div", 1, 4], expected: 0.25 },
   { name: "mul - 1", args: ["mul", 3, 2], expected: 6 },
   { name: "mul - 2", args: ["mul", 8, 0], expected: 0 },
+  { name: "add - 4", args: ["add", 0, 0], expected: 0 },
+  { name: "add - 5", args: ["add", -2e2, -2e3], expected: -2200},
+  { name: "div - 4", args: ["div", -1, -1], expected: 1 },
+  { name: "mul - 3", args: ["mul", -1, -1], expected: 1 },
+  { name: "div - 4", args: ["div", 0, -1], expected: 0 },
+  { name: "min - 4", args: ["min", -1, 6], expected: -7 },
+  { name: "div - 4", args: ["div", 6, 0], expected: Infinity},
   { name: "mul - 3", args: ["mul", -1, -1], expected: 1 },
   { name: "invalid - 1", args: ["tree", 0, 0], expected: "invalid operation" },
   { name: "invalid - 2", args: ["book", 0, 0], expected: "invalid operation" },
@@ -25,15 +32,19 @@ function doMath(operation, a, b) {
   // they will throw errors if your handler passes the wrong type arguments
   if (typeof operation !== "string") {
     throw new Error("operation should be a string");
+    
   }
   if (typeof a !== "number") {
     throw new Error("a should be a number");
+   
   }
   if (typeof b !== "number") {
     throw new Error("b should be a number");
+   
   }
   // write your code below this comment:
 
+  var calculate;
   if (operation == "add") {
     calculate = a + b;
   } else if (operation == "min") {
@@ -42,7 +53,18 @@ function doMath(operation, a, b) {
     calculate = a * b;
   } else if (operation == "div") {
     calculate = a / b;
+  } else {
+    return "invalid operation"; 
   }
+  return calculate;
 }
 
-testing(doMath, doMathTests);
+
+doMathTests.forEach(test => {
+  const actual = doMath(...test.args);
+  console.assert(actual === test.expected,
+    `${test.name}: (${typeof actual}) ${actual}`
+  );
+});
+
+
