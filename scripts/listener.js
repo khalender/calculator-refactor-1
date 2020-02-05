@@ -1,0 +1,1 @@
+document.querySelector("submitter").addEventListener('click',calculateHandler())
