@@ -1,4 +1,4 @@
-function calculateHandler(event) {
+function calculateHandler() {
   
   // read & process user input from event
   var a = parseInt(document.querySelector("#value1").value);
